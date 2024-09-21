@@ -1,3 +1,4 @@
+import Header from "./Header";
 interface CardProps {
   title: string;
   link: string;
@@ -18,10 +19,13 @@ export default function JewelleryHome() {
     </a>
   );
   return (
-    <div className="flex gap-10 h-screen justify-center items-center bg-[#F5F7F8]">
-      <Cards title="New Registration" link="#" />
-      <Cards title="Ownership Transfer" link="#" />
-      <Cards title="Gold Exchange" link="#" />
+    <div>
+         <Header name="ABC Jewellery"/>
+         <div className="flex gap-10 h-screen justify-center items-center bg-[#F5F7F8]">
+          <Cards title="New Registration" link="#" />
+          <Cards title="Ownership Transfer" link="#" />
+          <Cards title="Gold Exchange" link="#" />
+        </div>
     </div>
   );
 }

@@ -79,7 +79,7 @@ export default function Purity() {
   return (
     <div className="h-max p-10">
       <div className="flex flex-col items-center">
-        <h2 className="text-2xl font-semibold mb-6">Upload PDF Document</h2>
+        <h2 className="text-2xl font-semibold mb-6">Upload latest XRF readings as PDF Document</h2>
 
         <input
           type="file"

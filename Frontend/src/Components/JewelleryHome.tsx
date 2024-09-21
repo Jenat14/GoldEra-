@@ -21,7 +21,6 @@ export default function JewelleryHome() {
   );
   return (
     <div>
-         <Header name="ABC Jewellery"/>
          <div className="flex gap-10 h-screen justify-center items-center bg-[#F5F7F8]">
           <Cards title="New Registration" link="/registration" />
           <Cards title="Ownership Transfer" link="/transfer" />

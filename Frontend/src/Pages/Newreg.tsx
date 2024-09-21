@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';  // Import Axios for making API requests
+import axios from 'axios'; // Import axios for API requests
 
 const NewUserRegistration = () => {
   const [formData, setFormData] = useState({
     name: '',
     aadhaar: '',
-    huids: ['']  // Array to store multiple HUIDs
+    huids: [''], // Array to store multiple HUIDs
   });
+  const [otpSent, setOtpSent] = useState(false); // Track OTP status
+  const [otp, setOtp] = useState(''); // OTP entered by the user
 
   // Handle changes in Name and Aadhaar fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,26 +37,32 @@ const NewUserRegistration = () => {
     setFormData({ ...formData, huids: updatedHuids });
   };
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle form submission to send OTP
+  const handleSendOtp = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Prepare data for the backend request
+    setOtpSent(true); // Display OTP input field after clicking 'Send OTP'
+    alert('OTP has been sent to your registered email.');
+  };
+
+  // Handle OTP submission and send API request
+  const handleOtpSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     const { aadhaar, huids } = formData;
 
     try {
       // Make the API request to add HUIDs
       const response = await axios.post('http://localhost:3000/contract/add-huid', {
         aadhar: aadhaar,
-        huid: huids
+        huid: huids,
+        otp: otp, // Include the OTP in the request
       });
-      
+
       console.log('Form data sent:', response.data);
       alert('HUIDs added successfully. Transaction hash: ' + response.data.txHash);
-
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Error adding HUIDs: ');
+      alert('Error adding HUIDs.');
     }
   };
 
@@ -62,7 +70,7 @@ const NewUserRegistration = () => {
     <div style={{ backgroundColor: '#FFF7D4' }} className="flex items-center justify-center h-screen">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
         <h2 className="text-2xl font-semibold text-center mb-6">New User Registration</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSendOtp}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 font-semibold">Name:</label>
             <input 
@@ -121,13 +129,39 @@ const NewUserRegistration = () => {
             ))}
           </div>
 
-          <button 
-            type="submit" 
-            className="w-full bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300"
-          >
-            Send OTP
-          </button>
+          {!otpSent && (
+            <button 
+              type="submit" 
+              className="w-full bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300"
+            >
+              Send OTP
+            </button>
+          )}
         </form>
+
+        {otpSent && (
+          <form onSubmit={handleOtpSubmit} className="mt-6">
+            <div className="mb-4">
+              <label htmlFor="otp" className="block text-gray-700 font-semibold">Enter OTP:</label>
+              <input 
+                type="text" 
+                id="otp" 
+                name="otp" 
+                value={otp} 
+                onChange={(e) => setOtp(e.target.value)} 
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                placeholder="Enter the OTP"
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              className="w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+            >
+              Submit OTP
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

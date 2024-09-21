@@ -1,11 +1,12 @@
 import Header from "./Header";
+import { Link } from "react-router-dom";
 interface CardProps {
   title: string;
   link: string;
 }
 export default function JewelleryHome() {
   const Cards = ({ title,link }: CardProps) => (
-    <a href={link}>
+    <Link to={link}>
       <div className="max-w-sm flex flex-col justify-around p-6 bg-[#EEEEEE] h-44 w-72 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <h5 className="mb-2 text-2xl w-full text-center font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
@@ -16,15 +17,15 @@ export default function JewelleryHome() {
         </svg>
     </a>
       </div>
-    </a>
+    </Link>
   );
   return (
     <div>
          <Header name="ABC Jewellery"/>
          <div className="flex gap-10 h-screen justify-center items-center bg-[#F5F7F8]">
-          <Cards title="New Registration" link="#" />
-          <Cards title="Ownership Transfer" link="#" />
-          <Cards title="Gold Exchange" link="#" />
+          <Cards title="New Registration" link="/registration" />
+          <Cards title="Ownership Transfer" link="/transfer" />
+          <Cards title="Gold Exchange" link="/Exchange" />
         </div>
     </div>
   );

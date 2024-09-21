@@ -4,7 +4,7 @@ const { ethers } = require('ethers');
 
 const router = express.Router();
 
-const providerUrl = process.env.GANACHE_URL || 'http://127.0.0.1:7545'; // Fallback to Ganache URL
+const providerUrl = process.env.GANACHE_URL || 'http://127.0.0.1:7545'; 
 const privateKey = process.env.PRIVATE_KEY;
 const contractAddress = process.env.CONTRACT_ADDRESS;
 

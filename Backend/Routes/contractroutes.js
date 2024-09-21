@@ -9,229 +9,229 @@ const privateKey = process.env.PRIVATE_KEY;
 const contractAddress = process.env.CONTRACT_ADDRESS;
 
 const contractABI = 
-    [
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": false,
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "uint256",
-                    "name": "oldAadhar",
-                    "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "uint256",
-                    "name": "newAadhar",
-                    "type": "uint256"
-                }
-            ],
-            "name": "AadharUpdated",
-            "type": "event"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "aadhar",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "addHUID",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "uint256",
-                    "name": "aadhar",
-                    "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "HUIDAdded",
-            "type": "event"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "uint256",
-                    "name": "aadhar",
-                    "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "HUIDRemoved",
-            "type": "event"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "aadhar",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "removeHUID",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "newAadhar",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "updateAadhar",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "name": "aadharToHUIDs",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "getAadhar",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "aadhar",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getHUIDs",
-            "outputs": [
-                {
-                    "internalType": "string[]",
-                    "name": "",
-                    "type": "string[]"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "name": "huidToAadhar",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "aadhar",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "huid",
-                    "type": "string"
-                }
-            ],
-            "name": "isHUIDCorresponding",
-            "outputs": [
-                {
-                    "internalType": "bool",
-                    "name": "",
-                    "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        }
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "oldAadhar",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "newAadhar",
+				"type": "uint256"
+			}
+		],
+		"name": "AadharUpdated",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "aadhar",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string[]",
+				"name": "huidArray",
+				"type": "string[]"
+			}
+		],
+		"name": "addHUIDs",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "aadhar",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			}
+		],
+		"name": "HUIDAdded",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "aadhar",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			}
+		],
+		"name": "HUIDRemoved",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "aadhar",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			}
+		],
+		"name": "removeHUID",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newAadhar",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			}
+		],
+		"name": "updateAadhar",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "aadharToHUIDs",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			}
+		],
+		"name": "getAadhar",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "aadhar",
+				"type": "uint256"
+			}
+		],
+		"name": "getHUIDs",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "huidToAadhar",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "aadhar",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "huid",
+				"type": "string"
+			}
+		],
+		"name": "isHUIDCorresponding",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
 ];
 
 const provider = new ethers.JsonRpcProvider(providerUrl);
@@ -243,7 +243,7 @@ router.post('/add-huid', async (req, res) => {
     const { aadhar, huid } = req.body;
 
     try {
-        const tx = await contract.addHUID(aadhar, huid);
+        const tx = await contract.addHUIDs(aadhar, huid);
         await tx.wait();
         res.status(200).json({ message: 'HUID added successfully', txHash: tx.hash });
     } catch (error) {

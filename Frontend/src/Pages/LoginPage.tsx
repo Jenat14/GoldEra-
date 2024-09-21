@@ -1,10 +1,10 @@
 import Button from "../Components/button";
 import { useState } from "react";
-import jewelleryImage from "../assets/jewellery.jpg"; // Image for Jewellery login
-import bankImage from "../assets/bank.jpg"; // Image for Bank login
+import jewelleryImage from "../assets/jewellery.jpg"; 
+import bankImage from "../assets/bank.jpg"; 
 
 interface LoginPageProps {
-  usertype: 'jewellery' | 'bank'; // Type can be either 'jewellery' or 'bank'
+  usertype: 'jewellery' | 'bank'; 
 }
 
 export default function LoginPage({ usertype }: LoginPageProps) {

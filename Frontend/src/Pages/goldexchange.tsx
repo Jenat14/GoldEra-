@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios'; // Import axios to make HTTP requests
 import Button from "../Components/button"; // Import your button component
 
 export default function GoldExchangePage() {
@@ -9,20 +10,33 @@ export default function GoldExchangePage() {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [otpSentTo, setOtpSentTo] = useState("");
 
+  // Function to send OTP
   const handleSubmit = () => {
     // Logic to send OTP based on Aadhar number
-    // For demonstration, we're just logging the inputs
     console.log(`Name: ${name}, Aadhar: ${aadhar}, HUID: ${huid}`);
     setOtpSentTo(aadhar); // Assuming OTP is sent to Aadhar for demo purposes
     setIsOtpSent(true);
     alert(`OTP sent to Aadhar: ${aadhar}`);
   };
 
-  const handleOtpVerification = () => {
-    // Logic to verify OTP and remove HUID linkage
-    console.log(`Verifying OTP: ${otp} for Aadhar: ${aadhar}`);
-    // Here you would typically call your backend to verify the OTP and remove the HUID linkage
-    alert("HUID linkage removed successfully!");
+  // Function to verify OTP and send API request to remove HUID linkage
+  const handleOtpVerification = async () => {
+    try {
+      // Logic to verify OTP and remove HUID linkage
+      console.log(`Verifying OTP: ${otp} for Aadhar: ${aadhar}`);
+
+      // Call API to remove HUID linkage
+      const response = await axios.post('http://localhost:3000/contract/remove-huid', {
+        aadhar,
+        huid,
+      });
+
+      console.log('Response:', response.data);
+      alert("HUID linkage removed successfully! Transaction hash: " + response.data.txHash);
+    } catch (error) {
+      console.error('Error removing HUID:', error);
+      alert("Failed to remove HUID. Please try again.");
+    }
   };
 
   return (
@@ -59,6 +73,7 @@ export default function GoldExchangePage() {
             placeholder="Enter your HUID"
           />
         </div>
+
         {isOtpSent && (
           <div className="pt-4">
             <label className="block mb-2">Enter OTP:</label>
@@ -71,6 +86,7 @@ export default function GoldExchangePage() {
             />
           </div>
         )}
+
         <div className="p-10">
           {!isOtpSent ? (
             <Button title="Submit" onClick={handleSubmit} />

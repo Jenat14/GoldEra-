@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import axios for API requests
+import axios from 'axios'; 
 
 const NewUserRegistration = () => {
   const [formData, setFormData] = useState({
     name: '',
     aadhaar: '',
-    huids: [''], // Array to store multiple HUIDs
+    huids: [''], 
   });
-  const [otpSent, setOtpSent] = useState(false); // Track OTP status
-  const [otp, setOtp] = useState(''); // OTP entered by the user
+  const [otpSent, setOtpSent] = useState(false); 
+  const [otp, setOtp] = useState(''); 
 
-  // Handle changes in Name and Aadhaar fields
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -18,7 +17,6 @@ const NewUserRegistration = () => {
     });
   };
 
-  // Handle changes for dynamic HUID fields
   const handleHuidChange = (index: number, value: string) => {
     const updatedHuids = formData.huids.map((huid, idx) =>
       idx === index ? value : huid
@@ -40,8 +38,7 @@ const NewUserRegistration = () => {
   // Handle form submission to send OTP
   const handleSendOtp = (e: React.FormEvent) => {
     e.preventDefault();
-    setOtpSent(true); // Display OTP input field after clicking 'Send OTP'
-    alert('OTP has been sent to your registered email.');
+    setOtpSent(true); 
   };
 
   // Handle OTP submission and send API request
@@ -156,7 +153,7 @@ const NewUserRegistration = () => {
 
             <button 
               type="submit" 
-              className="w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+              className="w-full bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
             >
               Submit OTP
             </button>

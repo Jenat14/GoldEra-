@@ -1,12 +1,11 @@
 import Button from "../Components/button";
 import { useState } from "react";
-import axios from "axios";  // Import axios
+import axios from "axios";  
 
 export default function Ownership() {
   const [isOtpVisible, setIsOtpVisible] = useState(false);
   const [buttonText, setButtonText] = useState("Send OTP");
   
-  // States for collecting input values
   const [newAadhar, setNewAadhar] = useState("");
   const [huid, setHuid] = useState("");
 
@@ -14,8 +13,6 @@ export default function Ownership() {
     console.log("OTP has been sent");
     setIsOtpVisible(true);
     setButtonText("Proceed");
-
-    // When the button is "Proceed", trigger the form submission
     if (isOtpVisible) {
       handleSubmit();
     }
@@ -31,12 +28,10 @@ export default function Ownership() {
       if (response.status === 200) {
         console.log("Aadhar updated successfully:", response.data);
         alert('Aadhar updated successfully');
-        // Success handling can go here
       }
     } catch (error) {
       console.error("Error updating Aadhar:");
       alert('error');
-      // Handle error, display error message if needed
     }
   };
 
@@ -76,7 +71,7 @@ export default function Ownership() {
                 placeholder="Enter the HUID"
                 className="w-full px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#C07F00]"
                 value={huid}
-                onChange={(e) => setHuid(e.target.value)}  // Update huid state
+                onChange={(e) => setHuid(e.target.value)}  
               />
             </div>
             {isOtpVisible && (

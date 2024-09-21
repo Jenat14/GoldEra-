@@ -23,17 +23,13 @@ router.post('/', async (req, res) => {
             return res.status(401).json({ error: 'Invalid password' });
         }
 
-        // If the password matches, return success and user data
         return res.json({
             message: 'Login successful',
             user: {
                 Name: userData.Name,
-                Id: userData.Id,
-                PhoneNumber: userData.PhoneNumber
             }
         });
     } catch (error) {
-        // Log the actual error to understand the issue
         console.error('Error authenticating user:', error);
         return res.status(500).json({ error: 'Failed to authenticate user' });
     }

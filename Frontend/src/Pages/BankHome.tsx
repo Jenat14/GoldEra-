@@ -1,15 +1,22 @@
 import Button from "../Components/button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Ownership() {
   const [isOtpVisible, setIsOtpVisible] = useState(false);
   const [buttonText, setButtonText] = useState("Send OTP");
-
+  const navigate = useNavigate();
   const handleSendOTP = () => {
     console.log("OTP has been sent");
     setIsOtpVisible(true);
     setButtonText("Proceed");
+    if (isOtpVisible) {
+      handleSubmit();
+    }
   };
+  const handleSubmit = () => {
+       navigate('/purity')
+  }
 
   return (
     <div className="h-max">

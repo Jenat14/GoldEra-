@@ -1,11 +1,16 @@
 import { useState } from "react";
-import Button from "../Components/button"; // Assuming you have a Button component
+import Button from "../Components/button";
+import { useNavigate } from 'react-router-dom';
+ // Assuming you have a Button component
 
 export default function Citizen() {
   const [name, setName] = useState("");
   const [aadhaarId, setAadhaarId] = useState("");
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
+
+  const navigate = useNavigate();
+
 
   const handleSubmit = () => {
     console.log(`Name: ${name}, Aadhaar ID: ${aadhaarId}`);
@@ -16,6 +21,7 @@ export default function Citizen() {
   const handleOtpVerification = () => {
     console.log(`Verifying OTP: ${otp} for Aadhaar ID: ${aadhaarId}`);
     alert("OTP verified successfully!");
+    navigate('/CitizenHomePage')
   };
 
   return (

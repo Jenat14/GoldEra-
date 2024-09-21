@@ -1,5 +1,7 @@
 import Button from "../Components/button";
 import { useState } from "react";
+import jewelleryImage from "../assets/jewellery.jpg"; // Image for Jewellery login
+import bankImage from "../assets/jewelleryImage.jpg"; // Image for Bank login
 
 interface LoginPageProps {
   usertype: 'jewellery' | 'bank'; // Type can be either 'jewellery' or 'bank'
@@ -10,16 +12,17 @@ export default function LoginPage({ usertype }: LoginPageProps) {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // Handle the login logic here (just logging for now)
     console.log(`ID: ${id}, Password: ${password}, Usertype: ${usertype}`);
     alert(`Logging in with ID: ${id} and Usertype: ${usertype}`);
   };
 
+  // Determine which image to show based on the usertype
+  const loginImage = usertype === 'jewellery' ? jewelleryImage : bankImage;
+
   return (
     <div className="flex h-screen">
-      {/* Full height for the entire container */}
-      
-      <div className="bg-[#F2EAD3] w-1/2 h-full flex flex-col justify-center">
+      {/* Left section: Login form */}
+      <div className="bg-[#FFF7D4] w-1/2 h-full flex flex-col justify-center">
         <h2 className="font-medium text-5xl text-center">
           Login To Your {usertype === 'jewellery' ? 'Jewellery' : 'Bank'} Portal
         </h2>
@@ -50,6 +53,11 @@ export default function LoginPage({ usertype }: LoginPageProps) {
             <Button title="Submit" onClick={handleLogin} />
           </div>
         </div>
+      </div>
+
+      {/* Right section: Conditionally rendered image */}
+      <div className="w-1/2 h-full">
+        <img src={loginImage} alt="Login" className="object-cover w-full h-full" />
       </div>
     </div>
   );

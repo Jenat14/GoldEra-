@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={{ backgroundColor: '#FFF7D4' }} className="min-h-screen">
-      <Navbar />
+    <Navbar />
     {/* Header with logo and title */}
     <div className="flex items-center justify-center p-11"> {/* Added margin-top */}
       <img src={logo} alt="Logo" className="w-32 mr-4" />

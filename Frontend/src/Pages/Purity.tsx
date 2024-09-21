@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from "chart.js";
+import Button from "../Components/button";
 
-// Register the necessary chart.js components
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 export default function Purity() {
   const [file, setFile] = useState<File | null>(null);
   const [analysisResult, setAnalysisResult] = useState<string>("");
-  const [chartData, setChartData] = useState<any>(null); // For the bar chart data
-  const [adaptabilityRate, setAdaptabilityRate] = useState<number>(0); // For circular graph
+  const [chartData, setChartData] = useState<any>(null);
+  const [adaptabilityRate, setAdaptabilityRate] = useState<number>(0);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files ? e.target.files[0] : null;
@@ -22,12 +22,8 @@ export default function Purity() {
       return;
     }
 
-    // Simulate PDF analysis and comparison with previous XRF reading data
     const reader = new FileReader();
     reader.onload = () => {
-      const fileContent = reader.result as string;
-
-      // Simulate previous and current XRF readings
       const previousData = {
         Gold: 80,
         Silver: 10,
@@ -42,44 +38,40 @@ export default function Purity() {
         Zinc: 1,
       };
 
-      // Set the chart data for Bar graph
       const result = {
         labels: ["Gold", "Silver", "Copper", "Zinc"],
         datasets: [
           {
             label: "Previous Reading",
-            backgroundColor: "rgba(54, 162, 235, 0.6)",
+            backgroundColor: "#C07F00",
             data: Object.values(previousData),
           },
           {
             label: "Current Reading",
-            backgroundColor: "rgba(255, 99, 132, 0.6)",
+            backgroundColor: "#3F2305",
             data: Object.values(currentData),
           },
         ],
       };
       setChartData(result);
 
-      // Calculate adaptability rate (based on gold purity)
       const previousPurity = previousData.Gold;
       const currentPurity = currentData.Gold;
       const adaptability = ((currentPurity / previousPurity) * 100).toFixed(2);
       setAdaptabilityRate(parseFloat(adaptability));
 
-      // Set the analysis result for written report
       setAnalysisResult(`Document analyzed: ${file.name}`);
     };
     reader.readAsText(file);
   };
 
-  // Data for circular graph (adaptability rate)
   const circularGraphData = {
     labels: ["Adaptability Rate"],
     datasets: [
       {
         data: [adaptabilityRate],
-        backgroundColor: ["#36A2EB"],
-        hoverBackgroundColor: ["#36A2EB"],
+        backgroundColor: ["#C07F00"],
+        hoverBackgroundColor: ["#C07F00"],
       },
     ],
   };
@@ -136,34 +128,18 @@ export default function Purity() {
           </div>
         )}
 
-        {/* Circular Graph for Adaptability Rate */}
+        {/* Circular Graph section */}
         {analysisResult && (
          <>
              <h3 className="text-lg font-semibold mb-2">Adaptability Rate (Circular Graph):</h3>
               <div className="mt-6 w-64 max-w-lg">
                 <Doughnut data={circularGraphData} options={{ responsive: true }} />
               </div>
-              <p className="text-center mt-2 text-xl font-bold">{adaptabilityRate}%</p> {/* Displaying the percentage */}
-
+              <p className="text-center my-4 text-xl font-bold">{adaptabilityRate}%</p> {/* Displaying the percentage */}
+              <Button title="Proceed to Loan" onClick={()=>"#"}/>
          </>
         )}
       </div>
     </div>
-  );
-}
-
-interface ButtonProps {
-  title: string;
-  onClick: () => void;
-}
-
-function Button({ title, onClick }: ButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      className="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
-    >
-      {title}
-    </button>
   );
 }

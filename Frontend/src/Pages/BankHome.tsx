@@ -13,9 +13,9 @@ export default function Ownership() {
 
   return (
     <div className="h-max">
-      <div className="flex p-10 h-full items-center">
-      <div className="w-1/3 mx-auto h-[28rem] bg-white p-8 border border-gray-200 rounded-xl shadow-lg w-[40%]">
-        <h2 className="text-2xl text-center font-bold mb-6 text-gray-800">Current Owner</h2>
+      <div className="flex p-10 h-auto items-center">
+      <div className="w-1/3 mx-auto h-auto bg-white p-8 border border-gray-200 rounded-xl shadow-lg w-[40%]">
+        <h2 className="text-2xl text-center font-bold mb-6 text-gray-800">Verify HUID</h2>
         <form>
             <div className="mb-4">
             <label htmlFor="aadhar" className="block text-gray- font-medium mb-2">

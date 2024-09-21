@@ -285,7 +285,7 @@ router.get('/get-aadhar/:huid', async (req, res) => {
 
     try {
         const aadhar = await contract.getAadhar(huid);
-        res.status(200).json({ aadhar });
+        res.status(200).json({ aadhar: aadhar.toString() }); // Convert BigInt to string
     } catch (error) {
         console.error('Error fetching Aadhar:', error.message);
         res.status(500).json({ error: 'Failed to fetch Aadhar', details: error.message });

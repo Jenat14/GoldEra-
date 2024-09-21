@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios, { AxiosError } from "axios";  // Import Axios and AxiosError
 import jewelleryImage from "../assets/jewellery.jpg";
 import bankImage from "../assets/bank.jpg";
+import { useNavigate } from 'react-router-dom';
 
 interface LoginPageProps {
   usertype: 'Jewellery' | 'Bank';
@@ -22,6 +23,7 @@ interface LoginErrorResponse {
 export default function LoginPage({ usertype }: LoginPageProps) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -34,6 +36,9 @@ export default function LoginPage({ usertype }: LoginPageProps) {
       // Handle success response
       console.log(response.data);
       alert(`Login successful: ${response.data.user.Name}`);
+      if (usertype==="Jewellery"){
+        navigate('/JewelleryHome');
+      }
 
     } catch (error) {
       // Ensure the error is typed as AxiosError

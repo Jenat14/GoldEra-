@@ -10,21 +10,21 @@ const HomePage: React.FC = () => {
   const cards = [
     {
       id: 1,
-      link:"#",
+      link:"/loginB",
       description: <b>BANK</b>,
-      image: cardImage1, // Replace with your image URL
+      image: cardImage1
     },
     {
       id: 2,
-      link:"#",
+      link:"/loginJ",
       description: <b>JEWELLERY</b>,
-      image: cardImage2, // Replace with your image URL
+      image: cardImage2
     },
     {
       id: 3,
       link:"#",
       description: <b>CITIZEN</b>,
-      image: cardImage3, // Replace with your image URL
+      image: cardImage3
     },
   ];
 

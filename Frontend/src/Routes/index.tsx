@@ -8,6 +8,8 @@ import GoldExchangePage from "../Pages/goldexchange";
 import NavbarLayout from "./NavbarLayout";
 import BankLayout from "./BankLayout";
 import BankHome from "../Pages/BankHome";
+import Citizen from "../Pages/citizen";
+import HUIDListPage from "../Pages/HuidListPage";
 export default function Navigator(){
     return(
             <Routes>
@@ -22,7 +24,9 @@ export default function Navigator(){
                 </Route>
                 <Route element={<BankLayout />}>
                     <Route path="/BankHome" element={<BankHome />} />
-                </Route>    
+                </Route>
+                <Route path="/CitizenLogin" element={<Citizen />} />  
+                <Route path="/CitizenHomePage" element={<HUIDListPage name="Jenat" aadhaarId="1234567890" />} /> 
             </Routes>
     );
 }

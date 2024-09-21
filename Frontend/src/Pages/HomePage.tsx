@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
     },
     {
       id: 3,
-      link:"#",
+      link:"/CitizenLogin",
       description: <b>CITIZEN</b>,
       image: cardImage3
     },

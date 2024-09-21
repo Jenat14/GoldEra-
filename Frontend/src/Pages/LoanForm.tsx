@@ -40,7 +40,7 @@ export default function LoanForm(){
             </ol>
           </div>
 
-          <button type="submit" className="bg-[#3F2305] text-white font-bold py-2 px-4 rounded">Proceed</button>
+          <button type="submit" className="bg-[#3F2305] text-white font-bold py-2 px-4 rounded hover:bg-[#C07F00]">Proceed</button>
         </form>
       </div>
     </div>

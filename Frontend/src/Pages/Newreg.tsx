@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';  // Import Axios for making API requests
 
 const NewUserRegistration = () => {
   const [formData, setFormData] = useState({
@@ -35,10 +36,26 @@ const NewUserRegistration = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form data:', formData);
-    // Handle form submission logic here (API calls, sending OTP, etc.)
+    
+    // Prepare data for the backend request
+    const { aadhaar, huids } = formData;
+
+    try {
+      // Make the API request to add HUIDs
+      const response = await axios.post('http://localhost:3000/contract/add-huid', {
+        aadhar: aadhaar,
+        huid: huids
+      });
+      
+      console.log('Form data sent:', response.data);
+      alert('HUIDs added successfully. Transaction hash: ' + response.data.txHash);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error adding HUIDs: ');
+    }
   };
 
   return (

@@ -39,6 +39,9 @@ export default function LoginPage({ usertype }: LoginPageProps) {
       if (usertype==="Jewellery"){
         navigate('/JewelleryHome');
       }
+      else{
+        navigate('/BankHome')
+      }
 
     } catch (error) {
       // Ensure the error is typed as AxiosError

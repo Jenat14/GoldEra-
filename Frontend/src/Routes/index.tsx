@@ -6,6 +6,8 @@ import NewUserRegistration from "../Pages/Newreg";
 import Ownership from "../Pages/Ownership";
 import GoldExchangePage from "../Pages/goldexchange";
 import NavbarLayout from "./NavbarLayout";
+import BankLayout from "./BankLayout";
+import BankHome from "../Pages/BankHome";
 export default function Navigator(){
     return(
             <Routes>
@@ -16,9 +18,11 @@ export default function Navigator(){
                     <Route path="/Jewelleryhome" element={<JewelleryHome />} />
                     <Route path="/registration" element={<NewUserRegistration />} />
                     <Route path="/transfer" element={<Ownership />} />
-                    <Route path="/Exchange" element={<GoldExchangePage />
-                } />
-            </Route>
+                    <Route path="/Exchange" element={<GoldExchangePage />} />
+                </Route>
+                <Route element={<BankLayout />}>
+                    <Route path="/BankHome" element={<BankHome />} />
+                </Route>    
             </Routes>
     );
 }

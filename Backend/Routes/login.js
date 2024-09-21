@@ -16,7 +16,6 @@ router.post('/', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
         const userData = userSnapshot.data();
-        console.log('User data retrieved from Firestore:', userData);
 
         if (password !== userData.password) {
             console.log('Password mismatch');

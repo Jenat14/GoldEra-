@@ -3,6 +3,7 @@ import cardImage1 from '../assets/cardImage1.png';
 import cardImage2 from '../assets/cardImage2.png';
 import cardImage3 from '../assets/cardImage3.png';
 import logo from '../assets/logo.png';
+import Navbar from '../Components/Navbar';
 
 
 const HomePage: React.FC = () => {
@@ -29,6 +30,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div style={{ backgroundColor: '#FFF7D4' }} className="min-h-screen">
+      <Navbar />
     {/* Header with logo and title */}
     <div className="flex items-center justify-center p-11"> {/* Added margin-top */}
       <img src={logo} alt="Logo" className="w-32 mr-4" />

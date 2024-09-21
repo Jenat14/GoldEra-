@@ -4,13 +4,13 @@ interface NavbarProps{
 export default function Header({ name}: NavbarProps) {
   return (
     <>
-      <nav className="bg-[#C07F00] bg-opacity-80 border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+      <nav className="bg-[#C07F00] bg-opacity-80 border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
             href="#"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <span className="self-center text-white text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-white text-2xl font-semibold whitespace-nowrap">
               {name}
             </span>
           </a>

@@ -1,30 +1,69 @@
 import Button from "../Components/button";
 import { useState } from "react";
-import jewelleryImage from "../assets/jewellery.jpg"; 
-import bankImage from "../assets/bank.jpg"; 
+import axios, { AxiosError } from "axios";  // Import Axios and AxiosError
+import jewelleryImage from "../assets/jewellery.jpg";
+import bankImage from "../assets/bank.jpg";
 
 interface LoginPageProps {
-  usertype: 'jewellery' | 'bank'; 
+  usertype: 'Jewellery' | 'Bank';
+}
+
+interface LoginResponse {
+  message: string;
+  user: {
+    Name: string;
+  };
+}
+
+interface LoginErrorResponse {
+  error: string;
 }
 
 export default function LoginPage({ usertype }: LoginPageProps) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log(`ID: ${id}, Password: ${password}, Usertype: ${usertype}`);
-    alert(`Logging in with ID: ${id} and Usertype: ${usertype}`);
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post<LoginResponse>('http://localhost:3000/login', {
+        id,
+        password,
+        usertype,
+      });
+
+      // Handle success response
+      console.log(response.data);
+      alert(`Login successful: ${response.data.user.Name}`);
+
+    } catch (error) {
+      // Ensure the error is typed as AxiosError
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<LoginErrorResponse>;
+
+        // Handle the error if there's a response from the server
+        if (axiosError.response) {
+          alert(`Error: ${axiosError.response.data.error}`);
+          console.log('Server Error:', axiosError.response.data.error);
+        } else {
+          alert('Network Error');
+          console.log('Network Error:', error);
+        }
+      } else {
+        // Non-Axios errors (e.g., JavaScript runtime errors)
+        console.log('Unexpected Error:', error);
+        alert('An unexpected error occurred');
+      }
+    }
   };
 
-  // Determine which image to show based on the usertype
-  const loginImage = usertype === 'jewellery' ? jewelleryImage : bankImage;
+  const loginImage = usertype === 'Jewellery' ? jewelleryImage : bankImage;
 
   return (
     <div className="flex h-screen">
       {/* Left section: Login form */}
       <div className="bg-[#FFF7D4] w-1/2 h-full flex flex-col justify-center">
         <h2 className="font-medium text-5xl text-center">
-          Login To Your {usertype === 'jewellery' ? 'Jewellery' : 'Bank'} Portal
+          Login To Your {usertype === 'Jewellery' ? 'Jewellery' : 'Bank'} Portal
         </h2>
         <div className="w-3/4 mx-auto pt-10">
           <div className="pt-10">
@@ -35,7 +74,7 @@ export default function LoginPage({ usertype }: LoginPageProps) {
               className="rounded-full h-14 w-full p-4"
               value={id}
               onChange={(e) => setId(e.target.value)}
-              placeholder={`Enter ${usertype === 'jewellery' ? 'Jewellery' : 'Bank'} ID`}
+              placeholder={`Enter ${usertype === 'Jewellery' ? 'Jewellery' : 'Bank'} ID`}
             />
           </div>
           <div className="pt-10">

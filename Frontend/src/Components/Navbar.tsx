@@ -13,7 +13,6 @@ const Navbar: React.FC = () => {
         <li className="hover:text-gray-700 cursor-pointer">About Us</li>
         <li className="hover:text-gray-700 cursor-pointer">Login</li>
         <li>
-          
         </li>
       </ul>
     </nav>

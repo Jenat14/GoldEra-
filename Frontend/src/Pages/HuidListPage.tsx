@@ -67,7 +67,7 @@ export default function HUIDListPage({ name, aadhaarId }: HUIDListPageProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen ">
+    <div className="flex flex-col items-center justify-center h-screen bg-[#C07F00] bg-opacity-20">
       <h2 className="font-medium text-4xl mb-5 text-black">Welcome, {name}</h2>
       <p className="text-lg mb-5 text-black">Aadhaar ID: {aadhaarId}</p>
 
@@ -78,13 +78,13 @@ export default function HUIDListPage({ name, aadhaarId }: HUIDListPageProps) {
             {huidList.map((item) => (
               <div
                 key={item.huid}
-                className="p-4 border-2 border-yellow-600 rounded-lg cursor-pointer hover:bg-yellow-100 transition"
+                className="p-4 border-2 border-yellow-600 rounded-lg cursor-pointer hover:bg-[#eeeeee]  transition"
                 onClick={() => toggleHUIDDetails(item.huid)}
               >
                 <p className="text-lg font-semibold text-yellow-700">{item.huid}</p>
 
                 {selectedHUID === item.huid && (
-                  <div className="mt-4 p-4 bg-yellow-200 rounded-lg">
+                  <div className="mt-4 p-4 bg-[#C07F00] rounded-lg text-white">
                     <p><strong>Item Name:</strong> {item.details.name}</p>
                     <p><strong>Hall:</strong> {item.details.hall}</p>
                     <p><strong>Marking:</strong> {item.details.marking}</p>

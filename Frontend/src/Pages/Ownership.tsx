@@ -14,7 +14,7 @@ export default function Ownership() {
 
   return (
     <div className="h-max">
-      <div className="flex p-10 items-center">
+      <div className="flex p-10 h-full items-center">
         <TransferForm
           title="Current Owner"
           input1="Name"

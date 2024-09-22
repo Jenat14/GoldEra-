@@ -14,7 +14,7 @@ export default function HUIDListing() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-800">
+    <div className="flex items-center justify-center h-screen bg-yellow-100">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96">
         <h2 className="font-bold text-lg mb-4">HUID Listing</h2>
         <label htmlFor="aadharInput" className="block mb-2">Enter Aadhar Number:</label>
@@ -38,14 +38,6 @@ export default function HUIDListing() {
             <p>{huidResult}</p>
           </div>
         )}
-        <div className="flex justify-between mt-4">
-          <a href="../Homelogin/Homelogin.html" className="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
-            Home
-          </a>
-          <a href="./BIShome.html" className="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
-            Back
-          </a>
-        </div>
       </div>
     </div>
   );

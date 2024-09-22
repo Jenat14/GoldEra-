@@ -1,16 +1,28 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function HUIDListing() {
   const [aadharNumber, setAadharNumber] = useState("");
   const [huidResult, setHUIDResult] = useState<string | null>(null);
   const [isResultVisible, setIsResultVisible] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const getHUIDs = () => {
-    // Simulate fetching HUIDs based on Aadhar number
-    const mockResult = `HUID for Aadhar ${aadharNumber}: 1234567890`;
-
-    setHUIDResult(mockResult);
-    setIsResultVisible(true);
+  const getHUIDs = async () => {
+    try {
+      // Make an API request to fetch HUIDs based on the Aadhar number
+      const response = await axios.get(`http://localhost:3000/contract/get-huids/${aadharNumber}`);
+      
+      // Assuming the API returns an object with `huids` array
+      const huids = response.data.huids;
+      setHUIDResult(`HUIDs for Aadhar ${aadharNumber}: ${huids.join(", ")}`);
+      setIsResultVisible(true);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching HUIDs:', err);
+      setError("Failed to fetch HUIDs. Please try again.");
+      setHUIDResult(null);
+      setIsResultVisible(true);
+    }
   };
 
   return (

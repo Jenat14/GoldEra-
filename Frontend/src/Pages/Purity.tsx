@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from "chart.js";
 import Button from "../Components/button";
-
+import { useNavigate } from "react-router-dom";
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 export default function Purity() {
@@ -10,6 +10,7 @@ export default function Purity() {
   const [analysisResult, setAnalysisResult] = useState<string>("");
   const [chartData, setChartData] = useState<any>(null);
   const [adaptabilityRate, setAdaptabilityRate] = useState<number>(0);
+  const navigate = useNavigate();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = e.target.files ? e.target.files[0] : null;
@@ -136,7 +137,7 @@ export default function Purity() {
                 <Doughnut data={circularGraphData} options={{ responsive: true }} />
               </div>
               <p className="text-center my-4 text-xl font-bold">{adaptabilityRate}%</p> {/* Displaying the percentage */}
-              <Button title="Proceed to Loan" onClick={()=>"#"}/>
+              <Button title="Proceed to Loan" onClick={()=> {navigate("/Loan")}}/>
          </>
         )}
       </div>

@@ -15,6 +15,7 @@ import BISHome from "../Pages/BisHome";
 import FindOwner from "../Pages/Findowner";
 import HUIDListing from "../Pages/Huidlisting";
 import LoanForm from "../Pages/LoanForm";
+import BISLayout from "./BISLayout";
 export default function Navigator(){
     return(
             <Routes>
@@ -34,9 +35,11 @@ export default function Navigator(){
                 </Route>
                 <Route path="/CitizenLogin" element={<Citizen />} />  
                 <Route path="/CitizenHomePage" element={<HUIDListPage name="Jenat" aadhaarId="1234567890" />} /> 
-                <Route path="/BISHome" element={<BISHome />} />
-                <Route path="/FindOwner" element={<FindOwner />} />
-                <Route path="/HUIDlisting" element={<HUIDListing />} />
+                <Route element={<BISLayout />}>
+                    <Route path="/BISHome" element={<BISHome />} />
+                    <Route path="/FindOwner" element={<FindOwner />} />
+                    <Route path="/HUIDlisting" element={<HUIDListing />} />
+                </Route>
             </Routes>
     );
 }

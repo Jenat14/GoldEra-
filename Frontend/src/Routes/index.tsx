@@ -10,6 +10,7 @@ import BankLayout from "./BankLayout";
 import BankHome from "../Pages/BankHome";
 import Citizen from "../Pages/citizen";
 import HUIDListPage from "../Pages/HuidListPage";
+import Purity from "../Pages/Purity";
 export default function Navigator(){
     return(
             <Routes>
@@ -24,6 +25,7 @@ export default function Navigator(){
                 </Route>
                 <Route element={<BankLayout />}>
                     <Route path="/BankHome" element={<BankHome />} />
+                    <Route path="/purity" element={<Purity />} />
                 </Route>
                 <Route path="/CitizenLogin" element={<Citizen />} />  
                 <Route path="/CitizenHomePage" element={<HUIDListPage name="Jenat" aadhaarId="1234567890" />} /> 

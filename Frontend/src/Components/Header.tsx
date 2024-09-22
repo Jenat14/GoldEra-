@@ -20,7 +20,7 @@ export default function Header({ name}: NavbarProps) {
             <ul className="flex flex-col font-medium p-4 md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="block py-2 px-3 bg-blue-700 rounded md:bg-transparent md:text-white hover:bg-[#4C3D3D]"
                 >
                   Home

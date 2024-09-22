@@ -1,4 +1,3 @@
-import Header from "./Header";
 import { Link } from "react-router-dom";
 interface CardProps {
   title: string;
@@ -7,8 +6,8 @@ interface CardProps {
 export default function JewelleryHome() {
   const Cards = ({ title,link }: CardProps) => (
     <Link to={link}>
-      <div className="max-w-sm flex flex-col justify-around p-6 bg-[#EEEEEE] h-44 w-72 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <h5 className="mb-2 text-2xl w-full text-center font-bold tracking-tight text-gray-900 dark:text-white">
+      <div className="max-w-sm flex flex-col justify-around p-6 bg-[#EEEEEE] h-44 w-72 border border-gray-200 rounded-lg shadow">
+        <h5 className="mb-2 text-2xl w-full text-center font-bold tracking-tight text-gray-900">
           {title}
         </h5>
         <a href="#" className="inline-flex justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#C07F00] rounded-lg hover:bg-[#4C3D3D]">

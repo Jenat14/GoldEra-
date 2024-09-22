@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface JewelleryInfo {
   id: string;
@@ -9,6 +10,7 @@ interface JewelleryInfo {
 export default function BISHome() {
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const jewelleryData: { [key: string]: JewelleryInfo[] } = {
     Kerala: [
@@ -131,6 +133,7 @@ export default function BISHome() {
           <button
             type="submit"
             className="bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-yellow-700"
+            onClick={()=>{navigate('/FindOwner')}}
           >
             FIND OWNER
           </button>

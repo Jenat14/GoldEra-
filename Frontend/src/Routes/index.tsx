@@ -11,6 +11,9 @@ import BankHome from "../Pages/BankHome";
 import Citizen from "../Pages/citizen";
 import HUIDListPage from "../Pages/HuidListPage";
 import Purity from "../Pages/Purity";
+import BISHome from "../Pages/BisHome";
+import FindOwner from "../Pages/Findowner";
+
 export default function Navigator(){
     return(
             <Routes>
@@ -29,6 +32,8 @@ export default function Navigator(){
                 </Route>
                 <Route path="/CitizenLogin" element={<Citizen />} />  
                 <Route path="/CitizenHomePage" element={<HUIDListPage name="Jenat" aadhaarId="1234567890" />} /> 
+                <Route path="/BISHome" element={<BISHome />} />
+                <Route path="/FindOwner" element={<FindOwner />} />
             </Routes>
     );
 }

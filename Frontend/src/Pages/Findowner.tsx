@@ -1,20 +1,31 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function FindOwner() {
   const [huid, setHUID] = useState("");
   const [aadharResult, setAadharResult] = useState<string | null>(null);
   const [isResultVisible, setIsResultVisible] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const getAadhar = () => {
-    // Simulate fetching Aadhar number based on HUID
-    const mockResult = `Aadhar for HUID ${huid}: 9876543210`;
-
-    setAadharResult(mockResult);
-    setIsResultVisible(true);
+  const getAadhar = async () => {
+    try {
+      // Make an API request to fetch HUIDs based on the Aadhar number
+      const response = await axios.get(`http://localhost:3000/contract/get-aadhar/${huid}`);
+      
+      const aadhar = response.data.aadhar;
+      setAadharResult(`Aadhar for HUID ${huid}: ${aadhar}`);
+      setIsResultVisible(true);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching Aadhar:', err);
+      setError("Failed to fetch Aadhar. Please try again.");
+      setAadharResult(null);
+      setIsResultVisible(true);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-800">
+    <div className="flex items-center justify-center h-screen bg-yellow-100">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96">
         <h2 className="font-bold text-lg mb-4">Fetch Aadhar</h2>
         <label htmlFor="huidInput" className="block mb-2">Enter HUID:</label>
@@ -38,14 +49,7 @@ export default function FindOwner() {
             <p>{aadharResult}</p>
           </div>
         )}
-        <div className="flex justify-between mt-4">
-          <a href="../Homelogin/Homelogin.html" className="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
-            Home
-          </a>
-          <a href="./BIShome.html" className="bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600">
-            Back
-          </a>
-        </div>
+        
       </div>
     </div>
   );
